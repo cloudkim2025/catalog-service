@@ -1,4 +1,14 @@
 services:
+  polar-mysql:
+    image: "mysql:latest"
+    container_name: "polar-mysql"
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234     
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
   catalog-service:
     build:
       context: C:\Users\hi-pc-999\Desktop\java2\Polar-Service\Catalog-Service
@@ -8,16 +18,21 @@ services:
     image: "catalog-service"
     container_name: "catalog-service"
     ports:
-      - 9001:9001
+      - "9001:9001"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://polar-mysql:3306/catalog?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
 
-  polar-mysql:
-    image: "mysql:latest"
-    container_name: "polar-mysql"
+  order-service:
+    build:
+      context: C:\Users\hi-pc-999\Desktop\java2\Polar-Service\Order-Service
+      dockerfile: Dockerfile
+    image: "order-service"
+    container_name: "order-service"
     ports:
-      - 3307:3306
+      - "9002:9002"
+    depends_on:
+      - polar-mysql
+      - catalog-service
     environment:
-      - MYSQL_ROOT_PASSWORD=1234     
-    volumes:
-      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - SPRING_R2DBC_URL=r2dbc:mysql://polar-mysql:3306/orders?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+      - CATALOG_SERVICE_URL=http://catalog-service:9001
