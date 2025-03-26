@@ -14,5 +14,6 @@ public interface CatalogClient {
     CreateCatalogResponseDTO createCatalog(
             @RequestHeader("Authorization") String accessToken,
             @RequestBody CreateCatalogRequestDTO createCatalogRequestDTO
-            );
+    );
+
 }

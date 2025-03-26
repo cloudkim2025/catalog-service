@@ -2,7 +2,7 @@ package com.example.webfrontservice.controller;
 
 import com.example.webfrontservice.dto.*;
 import com.example.webfrontservice.service.UserService;
-import com.example.webfrontservice.utill.CookieUtil;
+import com.example.webfrontservice.util.CookieUtil;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

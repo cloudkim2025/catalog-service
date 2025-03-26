@@ -7,5 +7,5 @@ public class CreateCatalogRequestDTO {
     private String isbn;
     private String title;
     private String author;
-    private String price;
+    private Double price;
 }

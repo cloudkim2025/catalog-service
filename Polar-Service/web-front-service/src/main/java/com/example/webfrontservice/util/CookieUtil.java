@@ -1,4 +1,4 @@
-package com.example.webfrontservice.utill;
+package com.example.webfrontservice.util;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,9 +32,9 @@ public class CookieUtil {
         }
     }
 
-    public static String getCookieValue(HttpServletRequest request, String name) {
-        if (request.getCookies() != null) {
-            for (Cookie cookie : request.getCookies()) {
+    public static String getCookieValue(Cookie[] cookies, String name) {
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
                 if (name.equals(cookie.getName())) {
                     return cookie.getValue();
                 }
