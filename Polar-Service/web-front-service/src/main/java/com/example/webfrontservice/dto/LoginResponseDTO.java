@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class LoginResponseDTO {
+public class LoginResponseDTO  {
     private String url;
     private String userName;
     private String userId;

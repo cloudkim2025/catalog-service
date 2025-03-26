@@ -6,8 +6,10 @@ import com.example.webfrontservice.dto.JoinRequestDTO;
 import com.example.webfrontservice.dto.LoginClientResponseDTO;
 import com.example.webfrontservice.dto.LoginRequestDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
